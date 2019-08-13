@@ -1,2 +1,4 @@
 # Snake
-Classic snake game
+Classic snake game.
+
+Made with python and pygame.
