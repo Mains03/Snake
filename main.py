@@ -21,7 +21,7 @@ food = food.FoodManager(screen, grid, snake)
 
 clock = pygame.time.Clock()
 
-alive = True
+alive = False
 
 running = True
 while running:
