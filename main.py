@@ -5,8 +5,7 @@ import food
 
 pygame.init()
 
-dimensions = (400, 300)
-pixelsPerGridCubeLength = 20
+dimensions = (640, 480)
 
 screen = pygame.display.set_mode((dimensions[0], dimensions[1]))
 pygame.display.set_caption("Snake")
@@ -14,7 +13,7 @@ pygame.display.set_caption("Snake")
 background_colour = (255,255,255)
 screen.fill(background_colour)
 
-grid = grid.Grid(pixelsPerGridCubeLength, dimensions[0], dimensions[1])
+grid = grid.Grid(20, dimensions[0], dimensions[1])
 snake = snake.Snake(screen, grid)
 snake.addBody()
 food = food.FoodManager(screen, grid, snake)
@@ -63,6 +62,6 @@ while running:
 
     pygame.display.update()
 
-    clock.tick(10)
+    clock.tick(9)
 
 pygame.quit()

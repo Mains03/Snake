@@ -1,5 +1,5 @@
 class Grid:
-    def __init__(self, pixelsPerCubeSide, screenWidth, screenHeight):
-        self.pixelsPerCubeSide = pixelsPerCubeSide
-        self.width = screenWidth / pixelsPerCubeSide
-        self.height = screenHeight / pixelsPerCubeSide
+    def __init__(self, cellLength, screenWidth, screenHeight):
+        self.cellLength = cellLength
+        self.width = screenWidth / cellLength
+        self.height = screenHeight / cellLength

@@ -12,13 +12,11 @@ class FoodManager:
     
     def generateFood(self):
         generated = False
-
         while not generated:
             xPos = random.randint(0, self.grid.width-1)
             yPos = random.randint(0, self.grid.height-1)
 
             samePos = False
-            
             for (snakeXPos, snakeYPos) in self.snake.body:
                 if (xPos == snakeXPos and yPos == snakeYPos):
                     samePos = True
@@ -30,10 +28,10 @@ class FoodManager:
         self.food = (xPos, yPos)
 
     def draw(self):
-        screenXPos = self.food[0] * self.grid.pixelsPerCubeSide
-        screenYPos = self.food[1] * self.grid.pixelsPerCubeSide
+        screenXPos = self.food[0] * self.grid.cellLength
+        screenYPos = self.food[1] * self.grid.cellLength
 
-        pygame.draw.rect(self.screen, FOOD_COLOUR, [screenXPos, screenYPos, self.grid.pixelsPerCubeSide, self.grid.pixelsPerCubeSide])
+        pygame.draw.rect(self.screen, FOOD_COLOUR, [screenXPos, screenYPos, self.grid.cellLength, self.grid.cellLength])
 
     def is_eaten(self):
         if self.snake.body[0][0] == self.food[0] and self.snake.body[0][1] == self.food[1]:

@@ -3,39 +3,41 @@ import pygame
 SNAKE_COLOUR = (0, 255, 0)
 SNAKE_GROWTH_RATE = 2
 
-DIRECTION_UP    = 0, -1
-DIRECTION_DOWN  = 0, 1
-DIRECTION_LEFT  = -1, 0
-DIRECTION_RIGHT = 1, 0
+DIRECTION_UP    = (0, -1)
+DIRECTION_DOWN  = (0, 1)
+DIRECTION_LEFT  = (-1, 0)
+DIRECTION_RIGHT = (1, 0)
 
 class Snake:
     def __init__(self, screen, grid):
         self.screen = screen
         self.grid = grid
 
-        self.body = [[grid.width // 2, grid.height // 2]]
+		# Head is stored at the front
+        self.body = [[grid.width//2-1, grid.height//2]]
         self.newBodyPiece = 0
         self.direction = DIRECTION_RIGHT
 
     def draw(self):
         for i in range(len(self.body)):
-            screenXPos = self.body[i][0] * self.grid.pixelsPerCubeSide
-            screenYPos = self.body[i][1] * self.grid.pixelsPerCubeSide
+            screenXPos = self.body[i][0] * self.grid.cellLength
+            screenYPos = self.body[i][1] * self.grid.cellLength
 
-            pygame.draw.rect(self.screen, SNAKE_COLOUR, [screenXPos, screenYPos, self.grid.pixelsPerCubeSide, self.grid.pixelsPerCubeSide])
+            pygame.draw.rect(self.screen, SNAKE_COLOUR, [screenXPos, screenYPos, self.grid.cellLength, self.grid.cellLength])
 
     def move(self):
+    	# Add extra body piece
         if self.newBodyPiece > 0:
             lastPos = self.body[len(self.body)-1].copy()
-
-        if (len(self.body) > 0):
-            for i in range(len(self.body)-1, 0, -1):
-                self.body[i] = self.body[i-1].copy()
-
-        if self.newBodyPiece > 0:
             self.body.append(lastPos)
             self.newBodyPiece -= 1
+         
+        # Move the body pieces
+        for i in range(len(self.body)-1, 0, -1):
+            self.body[i][0] = self.body[i-1][0]
+            self.body[i][1] = self.body[i-1][1]
 
+		# Move the head
         self.body[0][0] += self.direction[0]
         self.body[0][1] += self.direction[1]
 
@@ -72,10 +74,10 @@ class Snake:
         return False
 
     def hitBody(self):
-        headPos = self.body[0].copy()
+        headPos = self.body[0]
 
         for i in range(1, len(self.body)):
-            if headPos == self.body[i]:
+            if headPos[0] == self.body[i][0] and headPos[1] == self.body[i][1]:
                 return True
 
         return False
