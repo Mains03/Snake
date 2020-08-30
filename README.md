@@ -1,6 +1,4 @@
 # Snake
-Classic snake game.
+Snake game, make with python and pygame.
 
-Made with python and pygame.
-
-Enter to start and restart.
+Enter to start and enter restart.
