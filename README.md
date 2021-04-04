@@ -1,4 +1,4 @@
 # Snake
-Snake game, make with python and pygame.
+Snake game, made with python and pygame.
 
 Enter to start and enter restart.
